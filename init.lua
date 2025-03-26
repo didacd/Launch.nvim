@@ -31,4 +31,5 @@ spec "user.barbar"
 
 -- Optional
 spec "user.extras.copilot"
+spec "user.extras.kubernetes"
 require "user.lazy"

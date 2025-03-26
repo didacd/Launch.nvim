@@ -75,6 +75,8 @@ function M.config()
     "bashls",
     "jsonls",
     "yamlls",
+    "rust_analyzer",
+    "gopls",
   }
 
   local default_diagnostic_config = {
@@ -87,7 +89,7 @@ function M.config()
         { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
       },
     },
-    virtual_text = false,
+    virtual_text = true,
     update_in_insert = false,
     underline = true,
     severity_sort = true,
@@ -123,7 +125,31 @@ function M.config()
     end
 
     if server == "lua_ls" then
-      require("neodev").setup {}
+      require("neodev").setup {
+        lspconfig = true,
+        library = true,
+        debug = false,
+        pathStrict = true,
+        setup_jsonls = true,
+        -- If an override is needed, use the following:
+        -- override = {
+        --   lua = {
+        --     runtime = {
+        --       version = "LuaJIT",
+        --       path = vim.split(package.path, ";"),
+        --     },
+        --     diagnostics = {
+        --       globals = { "vim", "describe", "it", "before_each", "after_each" },
+        --     },
+        --     workspace = {
+        --       library = {
+        --         [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+        --         [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+        --       },
+        --     },
+        --   },
+        -- },
+      }
     end
 
     lspconfig[server].setup(opts)

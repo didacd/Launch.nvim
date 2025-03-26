@@ -10,8 +10,11 @@ function M.config()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
 
-  keymap("n", "<s-m>", "<cmd>lua require('user.harpoon').mark_file()<cr>", opts)
-  keymap("n", "<TAB>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
+  local harpoon_keys = {
+    { "<leader>hm", "<cmd>lua require('user.harpoon').mark_file()<cr>", desc = "Mark File" },
+    { "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Toggle Harpoon Menu" },
+  }
+  require("which-key").add(harpoon_keys)
 end
 
 function M.mark_file()

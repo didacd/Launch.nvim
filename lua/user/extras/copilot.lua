@@ -22,7 +22,7 @@ function M.config()
       enabled = true,
       auto_trigger = true,
       keymap = {
-        accept = "<Shift-Tab>",
+        accept = "<c-Return>",
         next = "<c-j>",
         prev = "<c-k>",
         dismiss = "<c-h>",
